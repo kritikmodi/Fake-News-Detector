@@ -51,7 +51,6 @@ def main():
     updater.start_polling()
     updater.idle()
 
-
 if __name__ == '__main__':
     main()
 
@@ -69,10 +68,3 @@ outputs = model(tokenized).logits
 
 classifications = np.argmax(outputs, axis=1)
 print(classifications)
-
-
-
-
-
-
-
