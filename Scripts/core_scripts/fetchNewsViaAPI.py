@@ -1,7 +1,6 @@
 import requests
 import re
 
-
 def cleaningText(input):
     if type(input) == list:
         final = []
@@ -52,7 +51,7 @@ def cleaningText(input):
             text = text.lstrip()
             text = re.sub(' +', ' ', text)
             l1 = text.split()
-            if len(l1) < 5:
+            if len(l1)<5:
                 pass
             else:
                 final.append(''.join(text))
@@ -110,7 +109,6 @@ def cleaningText(input):
         else:
             return ''.join(text)
 
-
 def getNewsAPI(query):
     url = "https://free-news.p.rapidapi.com/v1/search"
     querystring = {"q": query, "lang": "en"}
@@ -132,20 +130,24 @@ def getNewsAPI(query):
         articles.append(news)
     final = []
     for item1 in articles:
-        # news = []
-        # news.append(item1[0])
-        # news.append(item1[6])
-        final.append(item1[0])
+        news = []
+        news.append(item1[0])
+        news.append(item1[4])
+        final.append(news)
     ans = []
     for items in final:
-        # news = []
-        x = items.find(':')
-        ans.append(items[x + 2:-1])
-        # y = items[1].find(':')
-        # news.append(items[1][y + 2:-1])
-        # ans.append(news)
+        news = []
+        x = items[0].find(':')
+        news.append(items[0][x + 2:-1])
+        y = items[1].find(':')
+        news.append(items[1][y + 2:-1])
+        ans.append(news)
+    res=[]
     for i in range(len(ans)):
-        ans[i] = cleaningText(ans[i])
-    ans=ans[:5]
-    return ans
-print(getNewsAPI("Narendra MOdi"))
+        d = {'title': "", 'link': ""}
+        d['title'] = cleaningText(ans[i][0])
+        d['link'] = ans[i][1]
+        res.append(d)
+    res=res[:5]
+    return res
+print(getNewsAPI('narendra modi'))
