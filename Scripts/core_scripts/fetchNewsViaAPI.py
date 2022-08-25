@@ -111,9 +111,8 @@ def cleaningText(input):
             return ''.join(text)
 
 
-def getNewsAPI():
+def getNewsAPI(query):
     url = "https://free-news.p.rapidapi.com/v1/search"
-    query = "Narendra Modi"
     querystring = {"q": query, "lang": "en"}
     headers = {
         "X-RapidAPI-Key": "555298ffecmsh3d72743b2b5fb02p197c87jsnf01abdd5c1fc",
@@ -147,4 +146,6 @@ def getNewsAPI():
         # ans.append(news)
     for i in range(len(ans)):
         ans[i] = cleaningText(ans[i])
+    ans=ans[:5]
     return ans
+print(getNewsAPI("Narendra MOdi"))
