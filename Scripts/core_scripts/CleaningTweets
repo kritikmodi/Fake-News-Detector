@@ -1,5 +1,5 @@
 def cleaningTweet(string):
-    string = clean(string, no_emoji=True)
+    # string = clean(string, no_emoji=True)
     string = re.sub(r'http\S+', '', string)
     newlist = []
     for letter in string.split():
